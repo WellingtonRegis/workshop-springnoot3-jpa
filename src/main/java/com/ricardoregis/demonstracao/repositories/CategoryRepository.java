@@ -1,0 +1,7 @@
+package com.ricardoregis.demonstracao.repositories;
+
+import com.ricardoregis.demonstracao.entities.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepository extends JpaRepository<Category, Long> {
+}

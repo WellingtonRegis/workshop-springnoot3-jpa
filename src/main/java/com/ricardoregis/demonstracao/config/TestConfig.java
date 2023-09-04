@@ -1,8 +1,10 @@
 package com.ricardoregis.demonstracao.config;
 
+import com.ricardoregis.demonstracao.entities.Category;
 import com.ricardoregis.demonstracao.entities.Order;
 import com.ricardoregis.demonstracao.entities.User;
 import com.ricardoregis.demonstracao.entities.enums.OrderStatus;
+import com.ricardoregis.demonstracao.repositories.CategoryRepository;
 import com.ricardoregis.demonstracao.repositories.OrderRepository;
 import com.ricardoregis.demonstracao.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,17 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
 
     @Override
     public void run(String... args) throws Exception {
+
+        Category cat1 = new Category(null, "Electronics");
+        Category cat2 = new Category(null, "Books");
+        Category cat3 = new Category(null, "Computers");
+        categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
         User u1 = new User(null, "Ricardo Regis", "ricardo@gmail.com", "99999-9999", "123456");
         User u2 = new User(null, "Paloma Santos", "paloma@gmail.com", "88888-8888", "654321");
@@ -36,5 +46,6 @@ public class TestConfig implements CommandLineRunner {
 
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
     }
 }
